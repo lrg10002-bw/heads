@@ -32,14 +32,6 @@ function new(const)
 		return private.entities
 	end
 	
-	function public.updateRange(rx, ry, rw, rh)
-		for k,v in pairs(private.entities) do
-			if not v.bounds.intersects(Bounds{x=rx,y=ry,width=rw,height=rh}) then
-				return
-			end
-			
-			
-		end
-	end
+	
 	
 	
