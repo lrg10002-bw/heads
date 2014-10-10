@@ -23,10 +23,9 @@ function new(const)
 		hash[hid][e.id] = e
 	end
 	
-	function private.clearBuckets()
+	function public.clearBuckets()
 		hash = {}
 	end
-	
 	
 	function public.addEntity(e)
 		tl = Point(e.bounds.x, e.bounds.y)
@@ -36,6 +35,21 @@ function new(const)
 		
 		private.addToBucket(tl, e); private.addToBucket(tr, e)
 		private.addToBucket(bl, e); private.addToBucket(br, e)
-		
+	end
+	
+	function public.update()
+		collisions = {}
+		unique = {}
+		for k,v in pairs(hash) do
+			if type(v) == "table" then
+				for eid,e in pairs(v) do
+					for eid1, e_1 in pairs(v) do
+						if e.bounds.intersects(e_1.bounds) then
+							table.insert(collisions, {e, e_1})
+					end
+				end
+			end
+		end
+	end
 		
 		
